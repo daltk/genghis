@@ -492,6 +492,13 @@ class JsonDecoder
                 } elseif (preg_match('/^\/.*\/$/s', $str)) {
                     // Special case: this is a regex.
                     return new JsonRegex($str);
+                } elseif (preg_match('/^(ObjectId|ISODate)\s*\(\s*(?:(["\'])((?:\\\?+.)*?)\2)?\s*\)$/s', $str, $m)) {
+                    switch ($m[1]) {
+                        case 'ObjectId':
+                            return new MongoId($m[3]);
+                        case 'ISODate':
+                            return new MongoDate(strtotime($m[3]));
+                    }
                 } else {
                     throw new JsonException();
                 }
