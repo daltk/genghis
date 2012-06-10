@@ -136,7 +136,7 @@ table {
         // Style the sorted column headers (THs)
         &.headerSortUp,
         &.headerSortDown {
-            background-color: fadeout(@blue, 95);
+            background-color: fadeout(@linkColor, 95%);
             text-shadow: 0 1px 1px rgba(255,255,255,.75);
         }
         // Style the ascending (reverse alphabetical) column header
@@ -263,9 +263,9 @@ section#servers {
         overflow-x: auto;
 
         h3 a {
-            color: #333;
+            color: @grayDark;
             &:hover, &:active {
-                color: #0058e1;
+                color: @linkColor;
             }
         }
     }
@@ -311,10 +311,12 @@ section#servers {
                 }
                 padding: 0;
                 height: 400px;
-                border-color: rgba(82,168,236,.8);
                 background-color: white;
-                @shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
-                .box-shadow(@shadow);
+
+                border-color:     fade(@linkColor, 80%);
+                @formFocusShadow: fade(@linkColor, 60%);
+                .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px @{formFocusShadow}");
+
                 .clearfix;
                 .genghis-document-editor {
                     position: relative;
@@ -360,10 +362,10 @@ section#document {
     max-height: 90%;
     .wrapper {
         .border-radius(4px);
-        border: 1px solid rgba(82,168,236,.8);
         background-color: white;
-        @shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
-        .box-shadow(@shadow);
+        border:           1px solid fade(@linkColor, 80%);
+        @formFocusShadow: fade(@linkColor, 60%);
+        .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px @{formFocusShadow}");
         .clearfix;
     }
     .genghis-document-editor {
